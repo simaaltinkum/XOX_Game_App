@@ -20,6 +20,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class ColorChanger {
+  List<Color> _colors;
+  int _colorIndex;
+
+  ColorChanger(this._colors) : _colorIndex = 0;
+
+  Color getColor() {
+    return _colors[_colorIndex];
+  }
+
+  void changeColor() {
+    _colorIndex = (_colorIndex + 1) % _colors.length;
+}
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -30,18 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Color _itemColor1_1 = Colors.blue[600]!;
-  Color _itemColor1_2 = Colors.blue[600]!;
-  Color _itemColor1_3 = Colors.blue[600]!;
-
-  Color _itemColor2_1 = Colors.blue[600]!;
-  Color _itemColor2_2 = Colors.blue[600]!;
-  Color _itemColor2_3 = Colors.blue[600]!;
-
-  Color _itemColor3_1 = Colors.blue[600]!;
-  Color _itemColor3_2 = Colors.blue[600]!;
-  Color _itemColor3_3 = Colors.blue[600]!;
-
   List<Color> _colors = [
     Colors.blue[600]!,
     Colors.green[600]!,
@@ -51,78 +54,35 @@ class _MyHomePageState extends State<MyHomePage> {
     Colors.pink[600]!
   ];
 
-  int _colorIndex1_1 = 0;
-  int _colorIndex1_2 = 0;
-  int _colorIndex1_3 = 0;
+  late ColorChanger _colorChanger1_1;
+  late ColorChanger _colorChanger1_2; 
+  late ColorChanger _colorChanger1_3;
 
-  int _colorIndex2_1 = 0;
-  int _colorIndex2_2 = 0;
-  int _colorIndex2_3 = 0;
+  late ColorChanger _colorChanger2_1; 
+  late ColorChanger _colorChanger2_2; 
+  late ColorChanger _colorChanger2_3; 
 
-  int _colorIndex3_1 = 0;
-  int _colorIndex3_2 = 0;
-  int _colorIndex3_3 = 0;
+  late ColorChanger _colorChanger3_1; 
+  late ColorChanger _colorChanger3_2; 
+  late ColorChanger _colorChanger3_3; 
 
-  void _changeColor1_1() {
-    setState(() {
-      _colorIndex1_1 = (_colorIndex1_1 + 1) % _colors.length;
-      _itemColor1_1 = _colors[_colorIndex1_1];
-    });
+  @override
+  void initState() {
+    super.initState();
+    _colorChanger1_1 = ColorChanger(_colors);
+    _colorChanger1_2 = ColorChanger(_colors);
+    _colorChanger1_3 = ColorChanger(_colors);
+    _colorChanger2_1 = ColorChanger(_colors);
+    _colorChanger2_2 = ColorChanger(_colors);
+    _colorChanger2_3 = ColorChanger(_colors);
+    _colorChanger3_1 = ColorChanger(_colors);
+    _colorChanger3_2 = ColorChanger(_colors);
+    _colorChanger3_3 = ColorChanger(_colors);
   }
 
-  void _changeColor1_2() {
+  void _changeColor(ColorChanger colorChanger) {
     setState(() {
-      _colorIndex1_2 = (_colorIndex1_2 + 1) % _colors.length;
-      _itemColor1_2 = _colors[_colorIndex1_2];
-    });
-  }
-
-  void _changeColor1_3() {
-    setState(() {
-      _colorIndex1_3 = (_colorIndex1_3 + 1) % _colors.length;
-      _itemColor1_3 = _colors[_colorIndex1_3];
-    });
-  }
-
-  void _changeColor2_1() {
-    setState(() {
-      _colorIndex2_1 = (_colorIndex2_1 + 1) % _colors.length;
-      _itemColor2_1 = _colors[_colorIndex2_1];
-    });
-  }
-
-  void _changeColor2_2() {
-    setState(() {
-      _colorIndex2_2 = (_colorIndex2_2 + 1) % _colors.length;
-      _itemColor2_2 = _colors[_colorIndex2_2];
-    });
-  }
-
-  void _changeColor2_3() {
-    setState(() {
-      _colorIndex2_3 = (_colorIndex2_3 + 1) % _colors.length;
-      _itemColor2_3 = _colors[_colorIndex2_3];
-    });
-  }
-
-  void _changeColor3_1() {
-    setState(() {
-      _colorIndex3_1 = (_colorIndex3_1 + 1) % _colors.length;
-      _itemColor3_1 = _colors[_colorIndex3_1];
-    });
-  }
-
-  void _changeColor3_2() {
-    setState(() {
-      _colorIndex3_2 = (_colorIndex3_2 + 1) % _colors.length;
-      _itemColor3_2 = _colors[_colorIndex3_2];
-    });
-  }
-
-  void _changeColor3_3() {
-    setState(() {
-      _colorIndex3_3 = (_colorIndex3_3 + 1) % _colors.length;
-      _itemColor3_3 = _colors[_colorIndex3_3];
+      colorChanger.changeColor();
     });
   }
 
@@ -141,27 +101,27 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: _changeColor1_1,
+                  onTap: () =>_changeColor(_colorChanger1_1),
                   child: Container(
-                    color: _itemColor1_1,
+                    color: _colorChanger1_1.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item1')),
                   ),
                 ),
                 GestureDetector(
-                  onTap: _changeColor1_2,
+                  onTap: () =>_changeColor(_colorChanger1_2),
                   child: Container(
-                    color: _itemColor1_2,
+                    color: _colorChanger1_2.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item2')),
                   ),
                 ),
                 GestureDetector(
-                  onTap: _changeColor1_3,
+                  onTap: () =>_changeColor(_colorChanger1_3),
                   child: Container(
-                    color: _itemColor1_3,
+                    color: _colorChanger1_3.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item3')),
@@ -174,27 +134,27 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: _changeColor2_1,
+                  onTap: () =>_changeColor(_colorChanger2_1),
                   child: Container(
-                    color: _itemColor2_1,
+                    color: _colorChanger2_1.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item1')),
                   ),
                 ),
                 GestureDetector(
-                  onTap: _changeColor2_2,
+                  onTap: () =>_changeColor(_colorChanger2_2),
                   child: Container(
-                    color: _itemColor2_2,
+                    color: _colorChanger2_2.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item2')),
                   ),
                 ),
                 GestureDetector(
-                  onTap: _changeColor2_3,
+                  onTap: () =>_changeColor(_colorChanger2_3),
                   child: Container(
-                    color: _itemColor2_3,
+                    color: _colorChanger2_3.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item3')),
@@ -207,27 +167,27 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: _changeColor3_1,
+                  onTap: () =>_changeColor(_colorChanger3_1),
                   child: Container(
-                    color: _itemColor3_1,
+                    color: _colorChanger3_1.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item1')),
                   ),
                 ),
                 GestureDetector(
-                  onTap: _changeColor3_2,
+                  onTap: () =>_changeColor(_colorChanger3_2),
                   child: Container(
-                    color: _itemColor3_2,
+                    color: _colorChanger3_2.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item2')),
                   ),
                 ),
                 GestureDetector(
-                  onTap: _changeColor3_3,
+                  onTap: () =>_changeColor(_colorChanger3_3),
                   child: Container(
-                    color: _itemColor3_3,
+                    color: _colorChanger3_3.getColor(),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Item3')),
