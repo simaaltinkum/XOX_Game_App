@@ -7,7 +7,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,13 +15,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'XOX')
+      home: const MyHomePage(title: 'XOX'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  @override
   const MyHomePage({super.key, required this.title});
 
   final String title;
@@ -32,7 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Color _itemColor1_1 = Colors.blue[600]!;
   Color _itemColor1_2 = Colors.blue[600]!;
   Color _itemColor1_3 = Colors.blue[600]!;
@@ -45,7 +42,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _itemColor3_2 = Colors.blue[600]!;
   Color _itemColor3_3 = Colors.blue[600]!;
 
-  List<Color> _colors = [Colors.blue[600]!, Colors.green[600]!, Colors.yellow[600]!, Colors.red[600]!, Colors.purple[600]!, Colors.pink[600]!];
+  List<Color> _colors = [
+    Colors.blue[600]!,
+    Colors.green[600]!,
+    Colors.yellow[600]!,
+    Colors.red[600]!,
+    Colors.purple[600]!,
+    Colors.pink[600]!
+  ];
 
   int _colorIndex1_1 = 0;
   int _colorIndex1_2 = 0;
@@ -104,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _changeColor3_1() {
     setState(() {
       _colorIndex3_1 = (_colorIndex3_1 + 1) % _colors.length;
-      _itemColor1_1 = _colors[_colorIndex1_1];
+      _itemColor3_1 = _colors[_colorIndex3_1];
     });
   }
 
@@ -129,132 +133,111 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-
-        child:Column(
-
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          // Container 1
           children: [
-            Container(margin: const EdgeInsets.all(10.0),
-            color: Colors.red[600],
-            width: 150.0,
-            height: 150.0,
-            child: Row(
+            // Row 1
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                child: GestureDetector(
+                GestureDetector(
                   onTap: _changeColor1_1,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor1_1,
-                  child: Text('Item1'),),
+                  child: Container(
+                    color: _itemColor1_1,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item1')),
                   ),
                 ),
-                Expanded(
-                child: GestureDetector(
+                GestureDetector(
                   onTap: _changeColor1_2,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor1_2,
-                  child: Text('Item2'),),
+                  child: Container(
+                    color: _itemColor1_2,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item2')),
                   ),
                 ),
-                Expanded(
-                child: GestureDetector(
+                GestureDetector(
                   onTap: _changeColor1_3,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor1_3,
-                  child: Text('Item3'),),
+                  child: Container(
+                    color: _itemColor1_3,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item3')),
                   ),
                 ),
-            ],) ,),
-            // Container 2
-            Container(margin: const EdgeInsets.all(10.0),
-            color: Colors.red[600],
-            width: 150.0,
-            height: 150.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                child: GestureDetector(
-                  onTap: _changeColor2_1,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor2_1,
-                  child: Text('Item1'),),
-                  ),
-                ),
-                Expanded(
-                child: GestureDetector(
-                  onTap: _changeColor2_2,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor2_2,
-                  child: Text('Item2'),),
-                  ),
-                ),
-                Expanded(
-                child: GestureDetector(
-                  onTap: _changeColor2_3,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor2_3,
-                  child: Text('Item3'),),
-                  ),
-                ),
-            ],),),
-          // Container 3
-            Container(margin: const EdgeInsets.all(10.0),
-            color: Colors.red[600],
-            width: 150.0,
-            height: 150.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                child: GestureDetector(
-                  onTap: _changeColor3_1,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor3_1,
-                  child: Text('Item1'),),
-                  ),
-                ),
-                Expanded(
-                child: GestureDetector(
-                  onTap: _changeColor3_2,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor3_2,
-                  child: Text('Item2'),),
-                  ),
-                ),
-                Expanded(
-                child: GestureDetector(
-                  onTap: _changeColor3_3,
-                child: Container(
-                  margin: const EdgeInsets.all(3.0),
-                  padding: const EdgeInsets.all(20.0),
-                  color: _itemColor3_3,
-                  child: Text('Item3'),),
-                  ),
-                ),
-            ],)
+              ],
             ),
-          ]
-        )
+            // Row 2
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: _changeColor2_1,
+                  child: Container(
+                    color: _itemColor2_1,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item1')),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: _changeColor2_2,
+                  child: Container(
+                    color: _itemColor2_2,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item2')),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: _changeColor2_3,
+                  child: Container(
+                    color: _itemColor2_3,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item3')),
+                  ),
+                ),
+              ],
+            ),
+            // Row 3
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: _changeColor3_1,
+                  child: Container(
+                    color: _itemColor3_1,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item1')),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: _changeColor3_2,
+                  child: Container(
+                    color: _itemColor3_2,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item2')),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: _changeColor3_3,
+                  child: Container(
+                    color: _itemColor3_3,
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Item3')),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
     );
   }
 }
