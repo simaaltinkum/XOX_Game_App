@@ -33,26 +33,94 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  static const double RADIUS_CORNER = 12;
-  static const int None = 0;
-  static const int X = 1;
-  static const int O = 2;
+  Color _itemColor1_1 = Colors.blue[600]!;
+  Color _itemColor1_2 = Colors.blue[600]!;
+  Color _itemColor1_3 = Colors.blue[600]!;
 
-  Color colorBorder = Colors.blue[600]!;
-  Color colorBackground = Colors.blue[100]!;
-  Color colorBackgroundChannelNone = Colors.blue[200]!;
-  Color colorBackgroundChanelX = Colors.blue[400]!;
-  Color colorBackgroundChanelO = Colors.blue[400]!;
-  Color colorChanelIcon = Colors.blue[800]!;
-  Color colorTextCurrentTurn = Colors.blue[900]!;
+  Color _itemColor2_1 = Colors.blue[600]!;
+  Color _itemColor2_2 = Colors.blue[600]!;
+  Color _itemColor2_3 = Colors.blue[600]!;
 
-  List<List<int>> chanelStatus = [
-    [None, None, None],
-    [None, None, None],
-    [None, None, None]
-  ];
+  Color _itemColor3_1 = Colors.blue[600]!;
+  Color _itemColor3_2 = Colors.blue[600]!;
+  Color _itemColor3_3 = Colors.blue[600]!;
 
-  int currentTurn = X;
+  List<Color> _colors = [Colors.blue[600]!, Colors.green[600]!, Colors.yellow[600]!, Colors.red[600]!, Colors.purple[600]!, Colors.pink[600]!];
+
+  int _colorIndex1_1 = 0;
+  int _colorIndex1_2 = 0;
+  int _colorIndex1_3 = 0;
+
+  int _colorIndex2_1 = 0;
+  int _colorIndex2_2 = 0;
+  int _colorIndex2_3 = 0;
+
+  int _colorIndex3_1 = 0;
+  int _colorIndex3_2 = 0;
+  int _colorIndex3_3 = 0;
+
+  void _changeColor1_1() {
+    setState(() {
+      _colorIndex1_1 = (_colorIndex1_1 + 1) % _colors.length;
+      _itemColor1_1 = _colors[_colorIndex1_1];
+    });
+  }
+
+  void _changeColor1_2() {
+    setState(() {
+      _colorIndex1_2 = (_colorIndex1_2 + 1) % _colors.length;
+      _itemColor1_2 = _colors[_colorIndex1_2];
+    });
+  }
+
+  void _changeColor1_3() {
+    setState(() {
+      _colorIndex1_3 = (_colorIndex1_3 + 1) % _colors.length;
+      _itemColor1_3 = _colors[_colorIndex1_3];
+    });
+  }
+
+  void _changeColor2_1() {
+    setState(() {
+      _colorIndex2_1 = (_colorIndex2_1 + 1) % _colors.length;
+      _itemColor2_1 = _colors[_colorIndex2_1];
+    });
+  }
+
+  void _changeColor2_2() {
+    setState(() {
+      _colorIndex2_2 = (_colorIndex2_2 + 1) % _colors.length;
+      _itemColor2_2 = _colors[_colorIndex2_2];
+    });
+  }
+
+  void _changeColor2_3() {
+    setState(() {
+      _colorIndex2_3 = (_colorIndex2_3 + 1) % _colors.length;
+      _itemColor2_3 = _colors[_colorIndex2_3];
+    });
+  }
+
+  void _changeColor3_1() {
+    setState(() {
+      _colorIndex3_1 = (_colorIndex3_1 + 1) % _colors.length;
+      _itemColor1_1 = _colors[_colorIndex1_1];
+    });
+  }
+
+  void _changeColor3_2() {
+    setState(() {
+      _colorIndex3_2 = (_colorIndex3_2 + 1) % _colors.length;
+      _itemColor3_2 = _colors[_colorIndex3_2];
+    });
+  }
+
+  void _changeColor3_3() {
+    setState(() {
+      _colorIndex3_3 = (_colorIndex3_3 + 1) % _colors.length;
+      _itemColor3_3 = _colors[_colorIndex3_3];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child:Column(
 
           mainAxisAlignment: MainAxisAlignment.center,
+          // Container 1
           children: [
             Container(margin: const EdgeInsets.all(10.0),
             color: Colors.red[600],
@@ -75,42 +144,36 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                 child: GestureDetector(
-                  onTap: () {
-                    print('Item1.1 tapped');
-                  },
+                  onTap: _changeColor1_1,
                 child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor1_1,
                   child: Text('Item1'),),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                  onTap: () {
-                    print('Item1.2 tapped');
-                  },
-                  child: Container(
+                child: GestureDetector(
+                  onTap: _changeColor1_2,
+                child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor1_2,
                   child: Text('Item2'),),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                  onTap: () {
-                    print('Item1.3 tapped');
-                  },
-                  child: Container(
+                child: GestureDetector(
+                  onTap: _changeColor1_3,
+                child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor1_3,
                   child: Text('Item3'),),
                   ),
                 ),
             ],) ,),
-
+            // Container 2
             Container(margin: const EdgeInsets.all(10.0),
             color: Colors.red[600],
             width: 150.0,
@@ -120,42 +183,36 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                 child: GestureDetector(
-                  onTap: () {
-                    print('Item2.1 tapped');
-                  },
+                  onTap: _changeColor2_1,
                 child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor2_1,
                   child: Text('Item1'),),
-                ),
+                  ),
                 ),
                 Expanded(
                 child: GestureDetector(
-                  onTap: () {
-                    print('Item2.2 tapped');
-                  },
-                  child: Container(
+                  onTap: _changeColor2_2,
+                child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor2_2,
                   child: Text('Item2'),),
-                ),
+                  ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                  onTap: () {
-                    print('Item2.3 tapped');
-                  },
-                  child: Container(
+                child: GestureDetector(
+                  onTap: _changeColor2_3,
+                child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor2_3,
                   child: Text('Item3'),),
                   ),
                 ),
             ],),),
-
+          // Container 3
             Container(margin: const EdgeInsets.all(10.0),
             color: Colors.red[600],
             width: 150.0,
@@ -165,37 +222,31 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                 child: GestureDetector(
-                  onTap: () {
-                    print('Item3.1 tapped');
-                  },
+                  onTap: _changeColor3_1,
                 child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor3_1,
                   child: Text('Item1'),),
-                )
+                  ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                  onTap: () {
-                    print('Item2.3 tapped');
-                  },
-                  child: Container(
+                child: GestureDetector(
+                  onTap: _changeColor3_2,
+                child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor3_2,
                   child: Text('Item2'),),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                  onTap: () {
-                    print('Item3.3 tapped');
-                  },
-                  child: Container(
+                child: GestureDetector(
+                  onTap: _changeColor3_3,
+                child: Container(
                   margin: const EdgeInsets.all(3.0),
                   padding: const EdgeInsets.all(20.0),
-                  color: Colors.blue[600],
+                  color: _itemColor3_3,
                   child: Text('Item3'),),
                   ),
                 ),
