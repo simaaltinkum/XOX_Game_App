@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:xoxgame/color_changer_store.dart';
 import 'package:xoxgame/gesturedetector_custom.dart';
 
 void main() {
@@ -21,179 +23,77 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// mvvm öğren
-// mobx ile state kont nasıl yapılır
-class ColorChanger {
-  List<Color> _colors;
-  int _colorIndex;
-
-  ColorChanger(this._colors) : _colorIndex = 0;
-
-  Color getColor() {
-    return _colors[_colorIndex];
-  }
-
-  void changeColor() {
-    _colorIndex = (_colorIndex + 1) % _colors.length;
-  }
-}
-
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => MyHomePageState();
-}
-
-class MyHomePageState extends State<MyHomePage> {
-  List<Color> _colors = [
-    Colors.blue[600]!,
-    Colors.green[600]!,
-    Colors.yellow[600]!,
-    Colors.red[600]!,
-    Colors.purple[600]!,
-    Colors.pink[600]!
-  ];
-
-  late ColorChanger _colorChanger1_1;
-  late ColorChanger _colorChanger1_2;
-  late ColorChanger _colorChanger1_3;
-
-  late ColorChanger _colorChanger2_1;
-  late ColorChanger _colorChanger2_2;
-  late ColorChanger _colorChanger2_3;
-
-  late ColorChanger _colorChanger3_1;
-  late ColorChanger _colorChanger3_2;
-  late ColorChanger _colorChanger3_3;
-
-  @override
-  void initState() {
-    super.initState();
-    _colorChanger1_1 = ColorChanger(_colors);
-    _colorChanger1_2 = ColorChanger(_colors);
-    _colorChanger1_3 = ColorChanger(_colors);
-    _colorChanger2_1 = ColorChanger(_colors);
-    _colorChanger2_2 = ColorChanger(_colors);
-    _colorChanger2_3 = ColorChanger(_colors);
-    _colorChanger3_1 = ColorChanger(_colors);
-    _colorChanger3_2 = ColorChanger(_colors);
-    _colorChanger3_3 = ColorChanger(_colors);
-  }
-
-  void changeColor(ColorChanger colorChanger) {
-    setState(() {
-      colorChanger.changeColor();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Row 1
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomGestureDetector(
-                  colorChanger1_1: _colorChanger1_1,
-                  text: 'Text1', 
-                  onTap: () => changeColor(_colorChanger1_1),
-                  
-                ),
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger1_2),
-                  child: Container(
-                    color: _colorChanger1_2.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item2')),
+            Observer(
+              builder: (_) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item1',
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger1_3),
-                  child: Container(
-                    color: _colorChanger1_3.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item3')),
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item2',
                   ),
-                ),
-              ],
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item3',
+                  ),
+                ],
+              ),
             ),
-            // Row 2
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger2_1),
-                  child: Container(
-                    color: _colorChanger2_1.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item1')),
+            Observer(
+              builder: (_) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item1',
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger2_2),
-                  child: Container(
-                    color: _colorChanger2_2.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item2')),
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item2',
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger2_3),
-                  child: Container(
-                    color: _colorChanger2_3.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item3')),
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item3',
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            // Row 3
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger3_1),
-                  child: Container(
-                    color: _colorChanger3_1.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item1')),
+            Observer(
+              builder: (_) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item1',
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger3_2),
-                  child: Container(
-                    color: _colorChanger3_2.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item2')),
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item2',
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => changeColor(_colorChanger3_3),
-                  child: Container(
-                    color: _colorChanger3_3.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item3')),
+                  CustomGestureDetector(
+                    colorChangerStore: ColorChangerStore(),
+                    text: 'Item3',
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

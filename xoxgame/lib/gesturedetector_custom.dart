@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:xoxgame/main.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:xoxgame/color_changer_store.dart';
 
 class CustomGestureDetector extends StatelessWidget {
-  CustomGestureDetector(
-      {super.key,
-      required ColorChanger colorChanger1_1,
-      required this.text,
-      required this.onTap})
-      : _colorChanger1_1 = colorChanger1_1;
+  const CustomGestureDetector({
+    super.key,
+    required this.colorChangerStore,
+    required this.text,
+  });
 
-  final ColorChanger _colorChanger1_1;
-  String text;
-  Function()? onTap;
+  final ColorChangerStore colorChangerStore;
+  final String text;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        color: _colorChanger1_1.getColor(),
-        width: 100.0,
-        height: 100.0,
-        child: Center(child: Text(text)),
+      onTap: colorChangerStore.changeColor,
+      child: Observer(
+        builder: (_) => Container(
+          color: colorChangerStore.color,
+          width: 100.0,
+          height: 100.0,
+          child: Center(child: Text(text)),
+        ),
       ),
     );
   }
