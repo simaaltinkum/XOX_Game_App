@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xoxgame/gesturedetector_custom.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// mvvm öğren
+// mobx ile state kont nasıl yapılır
 class ColorChanger {
   List<Color> _colors;
   int _colorIndex;
@@ -32,7 +35,7 @@ class ColorChanger {
 
   void changeColor() {
     _colorIndex = (_colorIndex + 1) % _colors.length;
-}
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -41,10 +44,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   List<Color> _colors = [
     Colors.blue[600]!,
     Colors.green[600]!,
@@ -55,16 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   late ColorChanger _colorChanger1_1;
-  late ColorChanger _colorChanger1_2; 
+  late ColorChanger _colorChanger1_2;
   late ColorChanger _colorChanger1_3;
 
-  late ColorChanger _colorChanger2_1; 
-  late ColorChanger _colorChanger2_2; 
-  late ColorChanger _colorChanger2_3; 
+  late ColorChanger _colorChanger2_1;
+  late ColorChanger _colorChanger2_2;
+  late ColorChanger _colorChanger2_3;
 
-  late ColorChanger _colorChanger3_1; 
-  late ColorChanger _colorChanger3_2; 
-  late ColorChanger _colorChanger3_3; 
+  late ColorChanger _colorChanger3_1;
+  late ColorChanger _colorChanger3_2;
+  late ColorChanger _colorChanger3_3;
 
   @override
   void initState() {
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _colorChanger3_3 = ColorChanger(_colors);
   }
 
-  void _changeColor(ColorChanger colorChanger) {
+  void changeColor(ColorChanger colorChanger) {
     setState(() {
       colorChanger.changeColor();
     });
@@ -100,17 +103,14 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger1_1),
-                  child: Container(
-                    color: _colorChanger1_1.getColor(),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Center(child: Text('Item1')),
-                  ),
+                CustomGestureDetector(
+                  colorChanger1_1: _colorChanger1_1,
+                  text: 'Text1', 
+                  onTap: () => changeColor(_colorChanger1_1),
+                  
                 ),
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger1_2),
+                  onTap: () => changeColor(_colorChanger1_2),
                   child: Container(
                     color: _colorChanger1_2.getColor(),
                     width: 100.0,
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger1_3),
+                  onTap: () => changeColor(_colorChanger1_3),
                   child: Container(
                     color: _colorChanger1_3.getColor(),
                     width: 100.0,
@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger2_1),
+                  onTap: () => changeColor(_colorChanger2_1),
                   child: Container(
                     color: _colorChanger2_1.getColor(),
                     width: 100.0,
@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger2_2),
+                  onTap: () => changeColor(_colorChanger2_2),
                   child: Container(
                     color: _colorChanger2_2.getColor(),
                     width: 100.0,
@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger2_3),
+                  onTap: () => changeColor(_colorChanger2_3),
                   child: Container(
                     color: _colorChanger2_3.getColor(),
                     width: 100.0,
@@ -167,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger3_1),
+                  onTap: () => changeColor(_colorChanger3_1),
                   child: Container(
                     color: _colorChanger3_1.getColor(),
                     width: 100.0,
@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger3_2),
+                  onTap: () => changeColor(_colorChanger3_2),
                   child: Container(
                     color: _colorChanger3_2.getColor(),
                     width: 100.0,
@@ -185,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () =>_changeColor(_colorChanger3_3),
+                  onTap: () => changeColor(_colorChanger3_3),
                   child: Container(
                     color: _colorChanger3_3.getColor(),
                     width: 100.0,
