@@ -1,36 +1,40 @@
 import 'package:mobx/mobx.dart';
+
 part 'game_store.g.dart';
 
 class GameStore = _GameStore with _$GameStore;
 
 abstract class _GameStore with Store {
-  @observable
-  List<String> displayElement = ['', '', '', '', '', '', '', '', ''];
 
   @observable
-  bool oTurn = true;
+  ObservableList<String> displayElement = ObservableList<String>.of(List.filled(9, ''));
+
+  @observable
+  bool xTurn = false;
 
   @observable
   int filledBoxes = 0;
 
-  @computed
-  List<String> get board => displayElement;
-
   @action
   void makeMove(int index) {
     if (displayElement[index] == '') {
-      if (oTurn) {
-        displayElement[index] = 'O';
-      } else {
+      if (xTurn) {
         displayElement[index] = 'X';
+      } else {
+        displayElement[index] = 'O';
       }
       filledBoxes++;
-      oTurn = !oTurn;
+      updateTurn();  
     }
   }
 
   @action
+  void updateTurn() {
+    xTurn = !xTurn;
+  }
+
+  @action
   void _checkWinner() {
-    // Kazananı kontrol etme mantığı buraya gelecek
+    // Kazananı kontrol etme mantığı buraya eklenecek
   }
 }

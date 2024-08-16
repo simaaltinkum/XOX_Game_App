@@ -9,41 +9,34 @@ part of 'game_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$GameStore on _GameStore, Store {
-  Computed<List<String>>? _$boardComputed;
-
-  @override
-  List<String> get board => (_$boardComputed ??=
-          Computed<List<String>>(() => super.board, name: '_GameStore.board'))
-      .value;
-
   late final _$displayElementAtom =
       Atom(name: '_GameStore.displayElement', context: context);
 
   @override
-  List<String> get displayElement {
+  ObservableList<String> get displayElement {
     _$displayElementAtom.reportRead();
     return super.displayElement;
   }
 
   @override
-  set displayElement(List<String> value) {
+  set displayElement(ObservableList<String> value) {
     _$displayElementAtom.reportWrite(value, super.displayElement, () {
       super.displayElement = value;
     });
   }
 
-  late final _$oTurnAtom = Atom(name: '_GameStore.oTurn', context: context);
+  late final _$xTurnAtom = Atom(name: '_GameStore.xTurn', context: context);
 
   @override
-  bool get oTurn {
-    _$oTurnAtom.reportRead();
-    return super.oTurn;
+  bool get xTurn {
+    _$xTurnAtom.reportRead();
+    return super.xTurn;
   }
 
   @override
-  set oTurn(bool value) {
-    _$oTurnAtom.reportWrite(value, super.oTurn, () {
-      super.oTurn = value;
+  set xTurn(bool value) {
+    _$xTurnAtom.reportWrite(value, super.xTurn, () {
+      super.xTurn = value;
     });
   }
 
@@ -78,6 +71,17 @@ mixin _$GameStore on _GameStore, Store {
   }
 
   @override
+  void updateTurn() {
+    final _$actionInfo =
+        _$_GameStoreActionController.startAction(name: '_GameStore.updateTurn');
+    try {
+      return super.updateTurn();
+    } finally {
+      _$_GameStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void _checkWinner() {
     final _$actionInfo = _$_GameStoreActionController.startAction(
         name: '_GameStore._checkWinner');
@@ -92,9 +96,8 @@ mixin _$GameStore on _GameStore, Store {
   String toString() {
     return '''
 displayElement: ${displayElement},
-oTurn: ${oTurn},
-filledBoxes: ${filledBoxes},
-board: ${board}
+xTurn: ${xTurn},
+filledBoxes: ${filledBoxes}
     ''';
   }
 }
