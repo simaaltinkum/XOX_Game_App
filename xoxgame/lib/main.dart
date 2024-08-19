@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xoxgame/xox_view.dart';
+import 'xox_view.dart';
 import 'game_store.dart';
 
 void main() {
@@ -18,8 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: XOXView(
-        gameStore: Provider.of<GameStore>(context),
+      home: Consumer<GameStore>(
+        builder: (context, gameStore, _) {
+          return XOXView(gameStore: gameStore);
+        },
       ),
     );
   }

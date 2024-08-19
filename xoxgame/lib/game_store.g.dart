@@ -56,6 +56,21 @@ mixin _$GameStore on _GameStore, Store {
     });
   }
 
+  late final _$winnerAtom = Atom(name: '_GameStore.winner', context: context);
+
+  @override
+  String get winner {
+    _$winnerAtom.reportRead();
+    return super.winner;
+  }
+
+  @override
+  set winner(String value) {
+    _$winnerAtom.reportWrite(value, super.winner, () {
+      super.winner = value;
+    });
+  }
+
   late final _$_GameStoreActionController =
       ActionController(name: '_GameStore', context: context);
 
@@ -93,11 +108,23 @@ mixin _$GameStore on _GameStore, Store {
   }
 
   @override
+  void resetGame() {
+    final _$actionInfo =
+        _$_GameStoreActionController.startAction(name: '_GameStore.resetGame');
+    try {
+      return super.resetGame();
+    } finally {
+      _$_GameStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 displayElement: ${displayElement},
 xTurn: ${xTurn},
-filledBoxes: ${filledBoxes}
+filledBoxes: ${filledBoxes},
+winner: ${winner}
     ''';
   }
 }
