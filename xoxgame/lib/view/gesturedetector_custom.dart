@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:xoxgame/color_changer_store.dart';
+import 'package:xoxgame/viewModel/color_changer_store.dart';
 
 class CustomGestureDetector extends StatelessWidget {
   const CustomGestureDetector({

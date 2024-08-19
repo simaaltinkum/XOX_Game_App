@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'game_store.dart';
+import '../viewModel/game_store.dart';
 
 class XOXView extends StatelessWidget {
   final GameStore gameStore;
