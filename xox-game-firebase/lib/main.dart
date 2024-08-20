@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import '../view/start_view.dart'; 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() {
+// ...
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(MyApp());
 }
+// mfa firebase mirket 
+// password manager
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,3 +28,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

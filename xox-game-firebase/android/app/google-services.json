@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "142096811268",
+    "project_id": "xox-game-firebase",
+    "storage_bucket": "xox-game-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142096811268:android:49dede45233d02829b3c51",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNiCN-GjHx5HpakxFxzZzCOkgrNknCm8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142096811268:android:da57099962d29de89b3c51",
+        "android_client_info": {
+          "package_name": "com.example.xoxgame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNiCN-GjHx5HpakxFxzZzCOkgrNknCm8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

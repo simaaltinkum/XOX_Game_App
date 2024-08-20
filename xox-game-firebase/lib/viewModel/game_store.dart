@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Add this line to import the 'cloud_firestore' package.
 
 part 'game_store.g.dart';
 
@@ -38,7 +39,7 @@ abstract class _GameStore with Store {
   }
 
   @action
-  void _checkWinner() {
+  void _checkWinner() {  
     final List<List<int>> winningCombinations = [
       [0, 1, 2], 
       [3, 4, 5], 
@@ -55,14 +56,30 @@ abstract class _GameStore with Store {
           displayElement[combination[0]] == displayElement[combination[1]] &&
           displayElement[combination[1]] == displayElement[combination[2]]) {
         winner = displayElement[combination[0]];
+        _saveWinnerToFirestore();
         return;
       }
     }
 
     if (filledBoxes == 9) {
       winner = 'Draw';
+      _saveWinnerToFirestore();
     }
   }
+
+  void _saveWinnerToFirestore() {
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  CollectionReference winnerCollectionRef = firestore.collection('winner');
+
+  winnerCollectionRef.add({
+    'winnerGame': winner, 
+  }).then((value) {
+    print("Winner Added");
+  }).catchError((error) {
+    print("Failed to add winner: $error");
+  });
+}
 
   @action
   void resetGame() {

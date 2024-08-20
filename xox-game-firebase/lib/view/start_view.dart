@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'xox_view.dart'; 
 import '../viewModel/game_store.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StartView extends StatelessWidget {
   const StartView({super.key});
@@ -20,7 +21,6 @@ class StartView extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Butona basıldığında oyun ekranına geçiş
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -36,3 +36,4 @@ class StartView extends StatelessWidget {
     );
   }
 }
+
