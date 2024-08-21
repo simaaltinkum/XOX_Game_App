@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../view/login_view.dart'; 
+import '../view/player_names.dart'; 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginRegisterPage(), 
+      home: PlayerNamesView(), 
     );
   }
 }

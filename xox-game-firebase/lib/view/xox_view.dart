@@ -59,7 +59,9 @@ class XOXView extends StatelessWidget {
                 builder: (_) => Column(
                   children: [
                     Text(
-                      gameStore.winner.isEmpty ? '' : 'Winner: ${gameStore.winner}',
+                      gameStore.winner.isEmpty
+                          ? ''
+                          : 'Winner: ${gameStore.winner}',
                       style: TextStyle(fontSize: 24.0),
                     ),
                     ElevatedButton(
@@ -71,14 +73,19 @@ class XOXView extends StatelessWidget {
                   ],
                 ),
               ),
-              if (gameStore.winner.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    gameStore.winner == 'Draw' ? 'It\'s a Draw!' : '${gameStore.winner} Won!',
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                ),
+              Observer(
+                  builder: (_) => (gameStore.winner.isNotEmpty)
+                      ? Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            gameStore.winner == 'Draw'
+                                ? 'It\'s a Draw!'
+                                : '${gameStore.winner} Won!',
+                            style: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : Container())
             ],
           );
         },
