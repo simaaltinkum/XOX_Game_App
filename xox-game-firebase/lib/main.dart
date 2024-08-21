@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../view/start_view.dart'; 
+import '../view/login_view.dart'; 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ...
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const StartView(), 
+      home: const LoginRegisterPage(), 
     );
   }
 }
