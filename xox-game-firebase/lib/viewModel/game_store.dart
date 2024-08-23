@@ -9,6 +9,7 @@ class GameStore = _GameStore with _$GameStore;
 abstract class _GameStore with Store {
   @observable
   String firstUser = "";
+
   @observable
   String secondUser = "";
 
@@ -80,14 +81,6 @@ abstract class _GameStore with Store {
     }
   }
 
-  // void _nameWinner(player1Name, player2Name) {
-  // if (winner == 'X') {
-  // winner = player1Name;
-  // }else {
-  // winner = player2Name;
-  //}
-  // }
-
   void _saveWinnerToFirestore() {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference winnerCollectionRef = firestore.collection('winner');
@@ -106,5 +99,18 @@ abstract class _GameStore with Store {
     displayElement = ObservableList<String>.of(List.filled(9, ''));
     winner = '';
     filledBoxes = 0;
+  }
+
+  Future<List<String>> fetchWinner() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('winners')
+          .get();
+      List<String> winners = snapshot.docs.map((doc) => doc['name'] as String).toList();
+      return winners;
+    } catch (e) {
+      print('Error fetching winners: $e');
+      return [];
+    }
   }
 }

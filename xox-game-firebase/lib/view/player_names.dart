@@ -12,14 +12,17 @@ class _PlayerNamesViewState extends State<PlayerNamesView> {
   final TextEditingController _player1Controller = TextEditingController();
   final TextEditingController _player2Controller = TextEditingController();
   final GameStore gameStore = GameStore();
+  final _formKey = GlobalKey<FormState>();
 
   void _startGame() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => XOXView(gameStore: gameStore),
-      ),
-    );
+    if (_formKey.currentState?.validate() ?? false) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => XOXView(gameStore: gameStore),
+        ),
+      );
+    }
   }
 
   @override
@@ -30,37 +33,44 @@ class _PlayerNamesViewState extends State<PlayerNamesView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Observer(
-                builder: (_) => TextField(
-                      controller: _player1Controller,
-                      onChanged: (value) {
-                        gameStore.firstUser = value;
-                      },
-                      onSubmitted: (value) {
-                        gameStore.firstUser = value;
-                      },
-                      decoration: InputDecoration(labelText: 'Player 1 Name'),
-                    )),
-            Observer(
-              builder: (_) => TextField(
-                onChanged: (value) {
-                  gameStore.secondUser = value;
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+              child: TextFormField(
+                controller: _player1Controller,
+                decoration: InputDecoration(labelText: 'Player 1 Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Player 1 name';
+                  }
+                  return null;
                 },
+                ),
+              ),
+              SizedBox(height: 20),
+              Center(
+              child: TextFormField(
                 controller: _player2Controller,
                 decoration: InputDecoration(labelText: 'Player 2 Name'),
-                onSubmitted: (value) {
-                  gameStore.secondUser = value;
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Player 2 name';
+                  }
+                  return null;
                 },
               ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _startGame,
-              child: Text('Start Game'),
-            ),
-          ],
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _startGame,
+                child: Text('Start Game'),
+              ),
+            ],
+          ),
         ),
       ),
     );

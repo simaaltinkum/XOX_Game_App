@@ -9,6 +9,38 @@ part of 'game_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$GameStore on _GameStore, Store {
+  late final _$firstUserAtom =
+      Atom(name: '_GameStore.firstUser', context: context);
+
+  @override
+  String get firstUser {
+    _$firstUserAtom.reportRead();
+    return super.firstUser;
+  }
+
+  @override
+  set firstUser(String value) {
+    _$firstUserAtom.reportWrite(value, super.firstUser, () {
+      super.firstUser = value;
+    });
+  }
+
+  late final _$secondUserAtom =
+      Atom(name: '_GameStore.secondUser', context: context);
+
+  @override
+  String get secondUser {
+    _$secondUserAtom.reportRead();
+    return super.secondUser;
+  }
+
+  @override
+  set secondUser(String value) {
+    _$secondUserAtom.reportWrite(value, super.secondUser, () {
+      super.secondUser = value;
+    });
+  }
+
   late final _$displayElementAtom =
       Atom(name: '_GameStore.displayElement', context: context);
 
@@ -121,6 +153,8 @@ mixin _$GameStore on _GameStore, Store {
   @override
   String toString() {
     return '''
+firstUser: ${firstUser},
+secondUser: ${secondUser},
 displayElement: ${displayElement},
 xTurn: ${xTurn},
 filledBoxes: ${filledBoxes},

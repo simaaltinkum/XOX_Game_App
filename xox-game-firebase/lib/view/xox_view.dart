@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../viewModel/game_store.dart';
+import '../view/leader_board.dart';
 
 class XOXView extends StatelessWidget {
   final GameStore gameStore;
@@ -70,6 +71,18 @@ class XOXView extends StatelessWidget {
                       },
                       child: const Text('Reset Game'),
                     ),
+                    ElevatedButton(
+                  onPressed: () async {
+                    List<String> winners = await gameStore.fetchWinner();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LeaderBoardPage(winners: winners),
+                      ),
+                    );
+                  },
+                      child: const Text('Show Leader Board'),
+                    ),
                   ],
                 ),
               ),
@@ -85,7 +98,8 @@ class XOXView extends StatelessWidget {
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                         )
-                      : Container())
+                      : Container()
+                      )
             ],
           );
         },
