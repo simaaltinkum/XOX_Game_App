@@ -16,7 +16,12 @@ class XOXView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading:
-            GestureDetector(onTap: () {}, child: Icon(Icons.backpack_sharp)),
+            GestureDetector(
+              onTap: () {
+                gameStore.resetGame();
+                Navigator.pop(context);
+              }, child: Icon(Icons.arrow_back),
+              ),
         automaticallyImplyLeading: false,
         title: const Text('XOX Game'),
       ),
