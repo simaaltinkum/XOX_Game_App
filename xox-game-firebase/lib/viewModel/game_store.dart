@@ -83,15 +83,14 @@ abstract class _GameStore with Store {
 
   void _saveWinnerToFirestore() {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference winnerCollectionRef = firestore.collection('winner');
-
-    winnerCollectionRef.add({
-      'winnerGame': winner,
-    }).then((value) {
-      print("Winner Added");
-    }).catchError((error) {
-      print("Failed to add winner: $error");
-    });
+    CollectionReference winnerRef = firestore.collection('winner');
+    try {
+      winnerRef.add({
+        'winnerGame': this.winner,
+      });
+    } catch (e) {
+      print("Error saving winner: $e");
+    }
   }
 
   @action
@@ -103,11 +102,11 @@ abstract class _GameStore with Store {
 
   Future<List<String>> fetchWinner() async {
     try {
-      QuerySnapshot snapshot = await FirebaseFirestore.instance
-          .collection('winners')
-          .get();
-      List<String> winners = snapshot.docs.map((doc) => doc['name'] as String).toList();
-      return winners;
+      QuerySnapshot snapshot =
+          await FirebaseFirestore.instance.collection('winner').get();
+      List<String> winner =
+          snapshot.docs.map((doc) => doc['winnerGame'] as String).toList();
+      return winner;
     } catch (e) {
       print('Error fetching winners: $e');
       return [];

@@ -15,6 +15,9 @@ class XOXView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading:
+            GestureDetector(onTap: () {}, child: Icon(Icons.backpack_sharp)),
+        automaticallyImplyLeading: false,
         title: const Text('XOX Game'),
       ),
       body: Observer(
@@ -72,15 +75,16 @@ class XOXView extends StatelessWidget {
                       child: const Text('Reset Game'),
                     ),
                     ElevatedButton(
-                  onPressed: () async {
-                    List<String> winners = await gameStore.fetchWinner();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LeaderBoardPage(winners: winners),
-                      ),
-                    );
-                  },
+                      onPressed: () async {
+                        List<String> winner = await gameStore.fetchWinner();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                LeaderBoardPage(winner: winner),
+                          ),
+                        );
+                      },
                       child: const Text('Show Leader Board'),
                     ),
                   ],
@@ -98,8 +102,7 @@ class XOXView extends StatelessWidget {
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                         )
-                      : Container()
-                      )
+                      : Container())
             ],
           );
         },

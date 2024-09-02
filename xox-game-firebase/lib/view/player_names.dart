@@ -39,31 +39,43 @@ class _PlayerNamesViewState extends State<PlayerNamesView> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-              child: TextFormField(
-                controller: _player1Controller,
-                decoration: InputDecoration(labelText: 'Player 1 Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Player 1 name';
-                  }
-                  return null;
-                },
+              Observer(
+                builder: (_) => Center(
+                  child: TextFormField(
+                    onFieldSubmitted: (value) {
+                      gameStore.firstUser = value;
+                    },
+                    onChanged: (value) => gameStore.firstUser = value,
+                    controller: _player1Controller,
+                    decoration: InputDecoration(labelText: 'Player 1 Name'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Player 1 name';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
               ),
               SizedBox(height: 20),
-              Center(
-              child: TextFormField(
-                controller: _player2Controller,
-                decoration: InputDecoration(labelText: 'Player 2 Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Player 2 name';
-                  }
-                  return null;
-                },
-              ),
-              ),
+              Observer(
+                  builder: (_) => Center(
+                        child: TextFormField(
+                          onFieldSubmitted: (value) {
+                            gameStore.secondUser = value;
+                          },
+                          onChanged: (value) => gameStore.secondUser = value,
+                          controller: _player2Controller,
+                          decoration:
+                              InputDecoration(labelText: 'Player 2 Name'),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter Player 2 name';
+                            }
+                            return null;
+                          },
+                        ),
+                      )),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _startGame,
