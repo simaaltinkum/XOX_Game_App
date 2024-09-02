@@ -21,15 +21,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My App',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(backgroundColor: Colors.purple),
         primarySwatch: Colors.blue,
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: Colors.amber,
-      ), 
+        scaffoldBackgroundColor: Colors.white70, 
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.black45,
+          foregroundColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black, backgroundColor: Colors.transparent, 
+          ),
+        ), 
       ),
       home: PlayerNamesView(),
     );
   }
 }
-
-

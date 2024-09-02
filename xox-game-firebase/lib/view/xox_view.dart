@@ -14,14 +14,15 @@ class XOXView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading:
-            GestureDetector(
-              onTap: () {
-                gameStore.resetGame();
-                Navigator.pop(context);
-              }, child: Icon(Icons.arrow_back),
-              ),
+        leading: GestureDetector(
+          onTap: () {
+            gameStore.resetGame();
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back),
+        ),
         automaticallyImplyLeading: false,
         title: const Text('XOX Game'),
       ),
@@ -37,20 +38,22 @@ class XOXView extends StatelessWidget {
                   itemCount: 9,
                   itemBuilder: (context, index) {
                     return Observer(
-                      builder: (_) => ElevatedButton(
-                        onPressed: () {
-                          gameStore.makeMove(index);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          elevation: 0,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.zero,
-                          ),
+                      builder: (_) => Container(
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlueAccent, 
+                          border: Border.all(color: Colors.green),
                         ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.green),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            gameStore.makeMove(index);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            elevation: 0,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                            // color: Colors.transparent, 
                           ),
                           child: Center(
                             child: Text(

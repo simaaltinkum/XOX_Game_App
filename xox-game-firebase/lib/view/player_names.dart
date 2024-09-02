@@ -28,6 +28,7 @@ class _PlayerNamesViewState extends State<PlayerNamesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Enter Player Names'),
       ),
